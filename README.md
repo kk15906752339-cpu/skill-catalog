@@ -1,2 +1,83 @@
-# skill-catalog
-Chinese-first Codex skill catalog: organize skills and explain their uses.
+# skill-catalog · 技能目录
+
+A Chinese-first Codex skill that explains your installed skills, organizes them by purpose, and keeps a readable catalog up to date.
+
+把“我装了这么多 skill，分别有什么用？”整理成一份中文使用说明。
+
+## 能做什么
+
+- 根据当前会话清单与本地技能文件，按实际用途分类。
+- 说明每项技能能做什么、适合什么任务，并给出一句调用示例。
+- 区分“本会话可用”和“文件存在但未列入会话”，保留插件命名空间。
+- 解释相似技能的选用区别，记录必要依赖与读取缺口。
+- 更新已有目录时保留用户手写备注，并说明本次变化。
+
+目录中的“可用”表示宿主会话已公布该技能，不代表已逐项执行成功或外部服务已连接。此技能读取说明、生成目录，不会为分类而搬移、删除或更新其他技能。
+
+## 安装
+
+在 Codex 中发送：
+
+```text
+使用 $skill-installer 安装 https://github.com/kk15906752339-cpu/skill-catalog，技能位于仓库根目录，名称为 skill-catalog。
+```
+
+安装后，在技能选择器中查找 `skill-catalog`，或发送下面的使用示例。若宿主没有显示新技能，重新打开会话或重启后再检查。
+
+这是指令型技能：日常使用不需要另外安装 Python、Node.js 或调用第三方 API。宿主需要能够读取技能文件、写入目录交付物；扫描时优先使用 `rg`，也可使用环境允许的文件访问工具。
+
+## 使用
+
+整理整库：
+
+```text
+使用 $skill-catalog 整理我当前可用的技能，按用途分类，用中文说明用途、适用场景和调用示例。
+```
+
+刷新目录：
+
+```text
+使用 $skill-catalog 更新我的技能目录，保留备注，并说明与上次相比的变化。
+```
+
+为具体任务选技能：
+
+```text
+使用 $skill-catalog 告诉我：整理一份表格文件应该用哪个已有技能？
+```
+
+默认整库交付为工作区内的 `outputs/技能目录.md`；工作区有其他交付约定时遵循其约定。只想在聊天中查看时，明确说“只在聊天中回答”。
+
+## 输出示例
+
+每项技能包含用途、场景、调用示例与状态。完整演示见 [examples/catalog.md](examples/catalog.md)，其中的技能均为虚构示例。
+
+| 技能标识 | 中文用途 | 适用场景 | 一句调用示例 | 状态与必要条件 |
+| --- | --- | --- | --- | --- |
+| `demo-notes` | 整理课程笔记 | 把课堂记录整理为复习提纲 | 使用 $demo-notes 整理这份课堂笔记。 | 示例：已列入会话；需要笔记内容 |
+
+## 范围与限制
+
+- 可见范围由当前会话提供的技能清单、用户指定目录和文件读取权限决定。
+- 不把插件缓存中的每个副本都当作已启用技能，也不把未列入会话的技能直接判定为禁用。
+- 比较快照时说明新增、移除或用途变化，不把文件发现时间当作安装时间。
+- 不运行全部技能来计算评分，不擅自访问对话历史、账户登录态或外部服务。
+- 本仓库只包含技能说明、界面元数据和虚构示例；实际生成的个人目录应留在自己的工作区。
+
+## 仓库结构
+
+```text
+skill-catalog/
+├── SKILL.md
+├── agents/openai.yaml
+├── examples/catalog.md
+├── README.md
+├── LICENSE
+└── .gitignore
+```
+
+欢迎通过 Issue 描述实际发现的分类、覆盖范围或刷新问题；复现材料请使用虚构或脱敏的技能信息。
+
+## License
+
+[MIT](LICENSE) · Copyright (c) 2026 kk15906752339-cpu
